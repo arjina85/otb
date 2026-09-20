@@ -1,0 +1,1 @@
+<?php require 'config/config.php';if(PHP_SAPI!=='cli')exit('CLI only');$e=$argv[1]??'';$p=$argv[2]??'';if(!$e||strlen($p)<8)exit("Usage: php create_admin.php email password\n");$s=db()->prepare('INSERT INTO users(email,password_hash,is_admin) VALUES(?,?,1)');$s->execute([$e,password_hash($p,PASSWORD_DEFAULT)]);echo "Admin created\n";
